@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:rcw="urn:gugik:specyfikacje:gmlas:rejestrCenIWartosciNieruchomosci:1.0" targetNamespace="urn:gugik:specyfikacje:gmlas:rejestrCenIWartosciNieruchomosci:1.0" elementFormDefault="qualified" version="2.0">
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<!-- ============================================================= -->
+	<simpleType name="RCW_PrzeznaczenieWMPZPType">
+		<restriction base="string">
+			<enumeration value="BD">
+				<annotation>
+					<appinfo>
+						<gml:description>brakDanych</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="MN">
+				<annotation>
+					<appinfo>
+						<gml:description>budownictwoMieszkanioweJednorodzinne</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="MW">
+				<annotation>
+					<appinfo>
+						<gml:description>budownictwoMieszkanioweWielorodzinne</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="U">
+				<annotation>
+					<appinfo>
+						<gml:description>terenZabudowyUslugowej</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="US">
+				<annotation>
+					<appinfo>
+						<gml:description>terenSportuIRekreacji</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="UC">
+				<annotation>
+					<appinfo>
+						<gml:description>terenRozmieszczeniaDuzychObiektowHandlowych</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="R">
+				<annotation>
+					<appinfo>
+						<gml:description>terenRolniczy</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="RU">
+				<annotation>
+					<appinfo>
+						<gml:description>terenObslugiProdukcjiWGospodarstwachRolnychHodowlanychOgrodniczychLesnych</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="RM">
+				<annotation>
+					<appinfo>
+						<gml:description>terenZabudowyZagrodowejWGospodarstwachRolnychHodowlanychIOgrodniczych</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="P">
+				<annotation>
+					<appinfo>
+						<gml:description>terenObiektowProdukcyjnychSkladowIMagazynow</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="PG">
+				<annotation>
+					<appinfo>
+						<gml:description>obszarITerenGorniczy</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="ZN">
+				<annotation>
+					<appinfo>
+						<gml:description>terenZieleniObjetyFormaOchronyPrzyrody</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="ZL">
+				<annotation>
+					<appinfo>
+						<gml:description>las</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="ZP">
+				<annotation>
+					<appinfo>
+						<gml:description>terenZieleniUrzadzonej</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="ZD">
+				<annotation>
+					<appinfo>
+						<gml:description>terenOgrodowDzialkowych</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="ZC">
+				<annotation>
+					<appinfo>
+						<gml:description>cmentarz</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="WM">
+				<annotation>
+					<appinfo>
+						<gml:description>terenWodPowierzchniowychMorskich</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="WS">
+				<annotation>
+					<appinfo>
+						<gml:description>terenWodPowierzchniowychSrodladowych</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="KD">
+				<annotation>
+					<appinfo>
+						<gml:description>terenDrogPublicznych</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="KDW">
+				<annotation>
+					<appinfo>
+						<gml:description>terenDrogWewnetrznych</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="KW">
+				<annotation>
+					<appinfo>
+						<gml:description>terenKomunikacjiWodnejSzlakWodny</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="TIT">
+				<annotation>
+					<appinfo>
+						<gml:description>terenInfrastrukturyTechnicznej</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="INN">
+				<annotation>
+					<appinfo>
+						<gml:description>innyNiewymieniony</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="RCW_UzbrojenieDzialkiType">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<appinfo>
+						<gml:description>siecWodociagowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<appinfo>
+						<gml:description>lokalneUjecieWody</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<appinfo>
+						<gml:description>siecElektroenergetycznaNiskiegoNapiecia</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="4">
+				<annotation>
+					<appinfo>
+						<gml:description>siecElektroenergetycznaSredniegoNapiecia</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="5">
+				<annotation>
+					<appinfo>
+						<gml:description>siecCieplownicza</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="6">
+				<annotation>
+					<appinfo>
+						<gml:description>siecGazowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="7">
+				<annotation>
+					<appinfo>
+						<gml:description>kanalizacjaSanitarnaOgolna</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="8">
+				<annotation>
+					<appinfo>
+						<gml:description>kanalizacjaSanitarnaLokalna</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="9">
+				<annotation>
+					<appinfo>
+						<gml:description>siecTelefoniczna</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="10">
+				<annotation>
+					<appinfo>
+						<gml:description>tvKablowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="11">
+				<annotation>
+					<appinfo>
+						<gml:description>kanalizacjaDeszczowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="12">
+				<annotation>
+					<appinfo>
+						<gml:description>siecSzerokopasmowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="13">
+				<annotation>
+					<appinfo>
+						<gml:description>brakUzbrojenia</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="RCW_RodzajUzytkuGruntowegoType">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<appinfo>
+						<gml:description>gruntOrny</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<appinfo>
+						<gml:description>sad</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<appinfo>
+						<gml:description>lakaTrwala</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="4">
+				<annotation>
+					<appinfo>
+						<gml:description>pastwiskoTrwale</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="5">
+				<annotation>
+					<appinfo>
+						<gml:description>gruntRolnyZabudowany</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="6">
+				<annotation>
+					<appinfo>
+						<gml:description>gruntPodStawem</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="7">
+				<annotation>
+					<appinfo>
+						<gml:description>row</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="RCW_RodzajTransakcjiType">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<appinfo>
+						<gml:description>wolnyRynek</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<appinfo>
+						<gml:description>sprzedazBezprzetargowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<appinfo>
+						<gml:description>sprzedazPrzetargowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="4">
+				<annotation>
+					<appinfo>
+						<gml:description>sprzedazWPostepowaniuEgzekucyjnym</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="5">
+				<annotation>
+					<appinfo>
+						<gml:description>sprzedazNaCelPubliczny</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="6">
+				<annotation>
+					<appinfo>
+						<gml:description>sprzedazZBonifikata</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="RCW_RodzajNieruchomosciType">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<appinfo>
+						<gml:description>niezabudowanaNieruchomoscJednouzytkowaRolna</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<appinfo>
+						<gml:description>niezabudowanaNieruchomoscRolnaWielouzytkowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<appinfo>
+						<gml:description>niezabudowanaNieruchomoscLesna</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="4">
+				<annotation>
+					<appinfo>
+						<gml:description>zabudowanaNieruchomoscRolna</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="5">
+				<annotation>
+					<appinfo>
+						<gml:description>niezabudowanaNieruchomoscPrzeznaczonaPodZabudoweInnaNizZagrodowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="6">
+				<annotation>
+					<appinfo>
+						<gml:description>nieruchomoscZabudowanaBudynkiemLubBudynkamiMieszkalnymi</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="7">
+				<annotation>
+					<appinfo>
+						<gml:description>nieruchomoscZabudowanaBudynkamiPelniacymiInneFunkcje</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="8">
+				<annotation>
+					<appinfo>
+						<gml:description>nieruchomoscBudynkowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="9">
+				<annotation>
+					<appinfo>
+						<gml:description>nieruchomoscLokalowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="10">
+				<annotation>
+					<appinfo>
+						<gml:description>zabudowanaNieruchomoscLesna</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="11">
+				<annotation>
+					<appinfo>
+						<gml:description>innaNieruchomosc</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="RCW_FunkcjaLokaluType">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<appinfo>
+						<gml:description>handlowoUslugowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<appinfo>
+						<gml:description>biurowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<appinfo>
+						<gml:description>produkcyjna</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="4">
+				<annotation>
+					<appinfo>
+						<gml:description>garaz</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="5">
+				<annotation>
+					<appinfo>
+						<gml:description>innaNiemieszkalna</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="RCW_RodzajRynkuType">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<appinfo>
+						<gml:description>rynekPierwotny</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<appinfo>
+						<gml:description>rynekWtorny</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="RCW_RodzajPrawaType">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<appinfo>
+						<gml:description>wlasnoscNieruchomosciGruntowej</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<appinfo>
+						<gml:description>uzytkowanieWieczyste</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<appinfo>
+						<gml:description>wlasnoscLokaluWrazZPrawemZwiazanym</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="4">
+				<annotation>
+					<appinfo>
+						<gml:description>wlasnoscBudynkuWrazZPrawemZwiazanym</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="RCW_ZastosowanePodejscieType">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<appinfo>
+						<gml:description>porownawcze</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<appinfo>
+						<gml:description>dochodowe</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<appinfo>
+						<gml:description>kosztowe</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="4">
+				<annotation>
+					<appinfo>
+						<gml:description>mieszane</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="RCW_CelWycenyType">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<appinfo>
+						<gml:description>sprzedazNieruchomosci</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<appinfo>
+						<gml:description>oplataZTytuluUzytkowaniaWieczystegoLubTrwalegoZarzadu</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<appinfo>
+						<gml:description>zabezpieczenieWierzytelnosci</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="5">
+				<annotation>
+					<appinfo>
+						<gml:description>inny</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="RCW_RodzajObciazeniaType">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<appinfo>
+						<gml:description>dozywocie</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<appinfo>
+						<gml:description>hipoteka</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<appinfo>
+						<gml:description>zastaw</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="4">
+				<annotation>
+					<appinfo>
+						<gml:description>sluzebnoscOsobista</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="5">
+				<annotation>
+					<appinfo>
+						<gml:description>sluzebnoscGruntowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="6">
+				<annotation>
+					<appinfo>
+						<gml:description>sluzebnoscPrzesylu</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="7">
+				<annotation>
+					<appinfo>
+						<gml:description>inne</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="8">
+				<annotation>
+					<appinfo>
+						<gml:description>brakObciazenia</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="RCW_StronaSprzedajacaKupujacaType">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<appinfo>
+						<gml:description>skarbPanstwa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<appinfo>
+						<gml:description>jednostkaSamorzaduTerytorialnego</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<appinfo>
+						<gml:description>osobaFizyczna</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="4">
+				<annotation>
+					<appinfo>
+						<gml:description>osobaPrawna</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="RCW_UzbrojenieBudynkuLokaluType">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<appinfo>
+						<gml:description>wodaSieciowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<appinfo>
+						<gml:description>wodaUjecieLokalneStudnia</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<appinfo>
+						<gml:description>energiaElektrycznaNiskiegoNapiecia</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="4">
+				<annotation>
+					<appinfo>
+						<gml:description>energiaElektrycznaSredniegoNapiecia</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="5">
+				<annotation>
+					<appinfo>
+						<gml:description>coSieciowe</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="6">
+				<annotation>
+					<appinfo>
+						<gml:description>coLokalne</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="7">
+				<annotation>
+					<appinfo>
+						<gml:description>gazSieciowy</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="8">
+				<annotation>
+					<appinfo>
+						<gml:description>kanalizacjaSanitarnaOgolna</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="9">
+				<annotation>
+					<appinfo>
+						<gml:description>kanalizacjaSanitarnaLokalna</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="10">
+				<annotation>
+					<appinfo>
+						<gml:description>telefon</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="11">
+				<annotation>
+					<appinfo>
+						<gml:description>kanalizacjaDeszczowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="12">
+				<annotation>
+					<appinfo>
+						<gml:description>tvKablowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="13">
+				<annotation>
+					<appinfo>
+						<gml:description>siecSzerokopasmowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="14">
+				<annotation>
+					<appinfo>
+						<gml:description>brakUzbrojenia</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="RCW_RodzajWartosciType">
+		<restriction base="string">
+			<enumeration value="1">
+				<annotation>
+					<appinfo>
+						<gml:description>rynkowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="2">
+				<annotation>
+					<appinfo>
+						<gml:description>odtworzeniowa</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+			<enumeration value="3">
+				<annotation>
+					<appinfo>
+						<gml:description>inna</gml:description>
+					</appinfo>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+</schema>

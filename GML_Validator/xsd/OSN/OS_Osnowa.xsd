@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:os="urn:gugik:specyfikacje:gmlas:osnowaGeodezyjna:1.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:bt="urn:gugik:specyfikacje:gmlas:modelPodstawowy:1.0" targetNamespace="urn:gugik:specyfikacje:gmlas:osnowaGeodezyjna:1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gco/gco.xsd"/>
+	<import namespace="urn:gugik:specyfikacje:gmlas:modelPodstawowy:1.0" schemaLocation="BT_ModelPodstawowy.xsd"/>
+	<!-- ================================== -->
+	<element name="OS_OgolnyPunktOsnowy" type="os:OS_OgolnyPunktOsnowyType" abstract="true" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OS_OgolnyPunktOsnowyType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="idIIP" type="bt:BT_IdentyfikatorPropertyType"/>
+					<element name="nrPkt" type="string"/>
+					<element name="idD" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="bt:BT_ReferencjaDoObiektuPropertyType">
+									<attribute ref="gco:nilReason"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="nazwaPkt" type="string" minOccurs="0"/>
+					<element name="celh" type="os:OS_OdniesWysType" minOccurs="0"/>
+					<element name="dataOstatniejAkt" type="date"/>
+					<element name="waznyOd" type="date"/>
+					<element name="geometria" type="gml:PointPropertyType"/>
+					<element name="metFiLa" type="os:OS_TypWyznWspType"/>
+					<element name="nrGlow" type="string" minOccurs="0"/>
+					<element name="stanPkt" type="os:OS_StanStabilizacjiType" maxOccurs="unbounded"/>
+					<element name="typPkt" type="os:OS_TypPunktuType"/>
+					<element name="typPom" type="os:OS_TypWyznWysType" minOccurs="0"/>
+					<element name="typStab" type="os:OS_TypStabilizacjiType"/>
+					<element name="typZab" type="os:OS_TypZabudowyType" minOccurs="0"/>
+					<element name="wysPkt" type="gml:LengthType" minOccurs="0"/>
+					<element name="rodzajPkt" type="os:OS_RodzajPunktuType" minOccurs="0"/>
+					<element name="klasaOsn" type="os:OS_KlasaOsnowyType"/>
+					<element name="foto" type="bt:BT_ZbiorPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="godlo" maxOccurs="unbounded">
+						<complexType>
+							<complexContent>
+								<extension base="bt:BT_ReferencjaDoObiektuPropertyType">
+									<attribute ref="gco:nilReason"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="szkic" type="bt:BT_ZbiorPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="szkicZesp" type="bt:BT_ZbiorPropertyType" minOccurs="0"/>
+					<element name="ukladGeod" type="bt:BT_UkladGeodType"/>
+					<element name="cyklZycia" type="bt:BT_CyklZyciaInfoType"/>
+					<element name="operatTech" type="bt:BT_OperatTechPropertyType" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>os:ogPktOsnowy2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="obs1" type="os:OS_ObserwacjaType" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>os:wskazujeStanowisko</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_OgolnyPunktOsnowyPropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_OgolnyPunktOsnowy"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<element name="OS_PunktOsnowyMagnetycznej" type="os:OS_PunktOsnowyMagnetycznejType" substitutionGroup="os:OS_OgolnyPunktOsnowy"/>
+	<complexType name="OS_PunktOsnowyMagnetycznejType">
+		<complexContent>
+			<extension base="os:OS_OgolnyPunktOsnowyType">
+				<sequence>
+					<element name="deklinacja" type="gml:AngleType" minOccurs="0"/>
+					<element name="mDekl" type="gml:AngleType" minOccurs="0"/>
+					<element name="inklinacja" type="gml:AngleType" minOccurs="0"/>
+					<element name="mInkl" type="gml:AngleType" minOccurs="0"/>
+					<element name="epoka" type="date"/>
+					<element name="natH" type="double" minOccurs="0"/>
+					<element name="mH" type="double" minOccurs="0"/>
+					<element name="natVF" type="double" minOccurs="0"/>
+					<element name="mVF" type="double" minOccurs="0"/>
+					<element name="natX" type="double" minOccurs="0"/>
+					<element name="mX" type="double" minOccurs="0"/>
+					<element name="natY" type="double" minOccurs="0"/>
+					<element name="mY" type="double" minOccurs="0"/>
+					<element name="natZ" type="double" minOccurs="0"/>
+					<element name="mZ" type="double" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_PunktOsnowyMagnetycznejPropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_PunktOsnowyMagnetycznej"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<element name="OS_PunktOsnowyGrawimetrycznej" type="os:OS_PunktOsnowyGrawimetrycznejType" substitutionGroup="os:OS_OgolnyPunktOsnowy"/>
+	<complexType name="OS_PunktOsnowyGrawimetrycznejType">
+		<complexContent>
+			<extension base="os:OS_OgolnyPunktOsnowyType">
+				<sequence>
+					<element name="przyspieszenieSilyCiezkosci" type="double"/>
+					<element name="mG" type="double"/>
+					<element name="VG" type="double" minOccurs="0"/>
+					<element name="typVG" type="string" minOccurs="0"/>
+					<element name="epoka" type="date" minOccurs="0"/>
+					<element name="przesloGraw" type="os:OS_PrzesloGrawimetrycznePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>os:pktOsnowyGraw</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_PunktOsnowyGrawimetrycznejPropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_PunktOsnowyGrawimetrycznej"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<element name="OS_PrzesloGrawimetryczne" type="os:OS_PrzesloGrawimetryczneType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OS_PrzesloGrawimetryczneType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="idPrzesla" type="string"/>
+					<element name="numPocz" type="string"/>
+					<element name="numKoniec" type="string"/>
+					<element name="deltaG" type="double"/>
+					<element name="mDeltaG" type="double"/>
+					<element name="pktOsnowyGraw" type="os:OS_PunktOsnowyGrawimetrycznejPropertyType" minOccurs="2" maxOccurs="2">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>os:przesloGraw</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_PrzesloGrawimetrycznePropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_PrzesloGrawimetryczne"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<element name="OS_PunktOsnowyWysokosciowej" type="os:OS_PunktOsnowyWysokosciowejType" substitutionGroup="os:OS_OgolnyPunktOsnowy"/>
+	<complexType name="OS_PunktOsnowyWysokosciowejType">
+		<complexContent>
+			<extension base="os:OS_OgolnyPunktOsnowyType">
+				<sequence>
+					<element name="mH" type="gml:LengthType" minOccurs="0"/>
+					<element name="typH" type="os:OS_RodzajWysType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="uH" type="bt:BT_UkladWysType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="odcinekLiniiNiw2" type="os:OS_OdcinekLiniiNiwelacyjnejPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>os:pktOsnWys1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="wektorGNSS1" type="os:OS_WektorGNSSPropertyType" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>os:pktOsnWys2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_PunktOsnowyWysokosciowejPropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_PunktOsnowyWysokosciowej"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<element name="OS_PunktOsnowyPoziomej" type="os:OS_PunktOsnowyPoziomejType" substitutionGroup="os:OS_OgolnyPunktOsnowy"/>
+	<complexType name="OS_PunktOsnowyPoziomejType">
+		<complexContent>
+			<extension base="os:OS_OgolnyPunktOsnowyType">
+				<sequence>
+					<element name="mP" type="gml:LengthType"/>
+					<element name="wektorGNSS2" type="os:OS_WektorGNSSPropertyType" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>os:pktOsnPoz1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="pktKier" type="os:OS_PunktKierunkowyPropertyType">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>os:pktOsnPoz2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_PunktOsnowyPoziomejPropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_PunktOsnowyPoziomej"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<element name="OS_WektorGNSS" type="os:OS_WektorGNSSType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OS_WektorGNSSType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="tmpPocz" type="string"/>
+					<element name="tmpKoniec" type="string"/>
+					<element name="ukladGeod" type="bt:BT_UkladGeodType"/>
+					<element name="deltaX" type="gml:LengthType"/>
+					<element name="mDeltaX" type="gml:LengthType"/>
+					<element name="deltaY" type="gml:LengthType"/>
+					<element name="mDeltaY" type="gml:LengthType"/>
+					<element name="deltaZ" type="gml:LengthType"/>
+					<element name="mDeltaZ" type="gml:LengthType"/>
+					<element name="pktOsnWys2" type="os:OS_PunktOsnowyWysokosciowejPropertyType" minOccurs="2" maxOccurs="2">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>os:wektorGNSS1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="pktOsnPoz1" type="os:OS_PunktOsnowyPoziomejPropertyType" minOccurs="2" maxOccurs="2">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>os:wektorGNSS2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_WektorGNSSPropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_WektorGNSS"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<element name="OS_PunktKierunkowy" type="os:OS_PunktKierunkowyType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OS_PunktKierunkowyType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="azymut" type="gml:AngleType"/>
+					<element name="dlugosc" type="gml:LengthType"/>
+					<element name="nrGlow" type="string" minOccurs="0"/>
+					<element name="numPkier" type="string"/>
+					<element name="pktOsnPoz2" type="os:OS_PunktOsnowyPoziomejPropertyType">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>os:pktKier</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_PunktKierunkowyPropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_PunktKierunkowy"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<element name="OS_OdcinekLiniiNiwelacyjnej" type="os:OS_OdcinekLiniiNiwelacyjnejType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OS_OdcinekLiniiNiwelacyjnejType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="numerOdcinka" type="string"/>
+					<element name="numPocz" type="string"/>
+					<element name="numKoniec" type="string"/>
+					<element name="deltaH" type="gml:LengthType"/>
+					<element name="diffPW" type="double"/>
+					<element name="dlugosc" type="gml:LengthType"/>
+					<element name="poprNorm1" type="double"/>
+					<element name="poprNorm2" type="double"/>
+					<element name="wyrPopr" type="gml:LengthType"/>
+					<element name="pktOsnWys1" type="os:OS_PunktOsnowyWysokosciowejPropertyType" minOccurs="2" maxOccurs="2">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>os:odcinekLiniiNiw2</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="liniaNiw" type="os:OS_LiniaNiwelacyjnaPropertyType">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>os:odcinekLiniiNiw1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_OdcinekLiniiNiwelacyjnejPropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_OdcinekLiniiNiwelacyjnej"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<element name="OS_LiniaNiwelacyjna" type="os:OS_LiniaNiwelacyjnaType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OS_LiniaNiwelacyjnaType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="numerLinii" type="string"/>
+					<element name="nazwaLinii" type="string" minOccurs="0"/>
+					<element name="numerPoligonu" type="string" maxOccurs="2"/>
+					<element name="numPocz" type="string"/>
+					<element name="numKoniec" type="string"/>
+					<element name="klasaOsn" type="os:OS_KlasaOsnowyType"/>
+					<!--derived attribute -->
+					<element name="odcinekCount" type="integer"/>
+					<element name="epoka" type="string"/>
+					<element name="mKm" type="gml:LengthType"/>
+					<element name="mPierwszyPunkt" type="gml:LengthType"/>
+					<element name="mPrzypKm" type="gml:LengthType"/>
+					<element name="mSystKm" type="gml:LengthType"/>
+					<element name="wyrPopr" type="double"/>
+					<element name="odcinekLiniiNiw1" type="os:OS_OdcinekLiniiNiwelacyjnejPropertyType" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>os:liniaNiw</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_LiniaNiwelacyjnaPropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_LiniaNiwelacyjna"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<!--=========OBSERWACJE============= -->
+	<element name="OS_ObserwacjaMagnetyczna" type="os:OS_ObserwacjaMagnetycznaType" substitutionGroup="os:OS_Obserwacja"/>
+	<complexType name="OS_ObserwacjaMagnetycznaType">
+		<complexContent>
+			<extension base="os:OS_ObserwacjaType">
+				<sequence>
+					<element name="deklinacja" type="gml:AngleType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="mDekl" type="gml:AngleType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="inklinacja" type="gml:AngleType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="mInkl" type="gml:AngleType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="momentObserwacji" type="dateTime" maxOccurs="unbounded"/>
+					<element name="magnetogram" type="bt:BT_ZbiorPropertyType"/>
+					<element name="natH" type="double" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="mH" type="double" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="natVF" type="double" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="mVF" type="double" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="natX" type="double" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="mX" type="double" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="natY" type="double" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="mY" type="double" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="natZ" type="double" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="mZ" type="double" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_ObserwacjaMagnetycznaPropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_ObserwacjaMagnetyczna"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<element name="OS_ObserwacjaGrawimetrycznaPunkt" type="os:OS_ObserwacjaGrawimetrycznaPunktType" substitutionGroup="os:OS_Obserwacja"/>
+	<complexType name="OS_ObserwacjaGrawimetrycznaPunktType">
+		<complexContent>
+			<extension base="os:OS_ObserwacjaType">
+				<sequence>
+					<element name="wartoscPrzyspieszenia" type="double" maxOccurs="unbounded"/>
+					<element name="mG" type="double" maxOccurs="unbounded"/>
+					<element name="momentObserwacji" type="dateTime" maxOccurs="unbounded"/>
+					<element name="obsGrawPrzeslo" type="os:OS_ObserwacjaGrawimetrycznaPrzesloPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>os:obsGrawPunkt</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_ObserwacjaGrawimetrycznaPunktPropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_ObserwacjaGrawimetrycznaPunkt"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<element name="OS_ObserwacjaGrawimetrycznaPrzeslo" type="os:OS_ObserwacjaGrawimetrycznaPrzesloType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OS_ObserwacjaGrawimetrycznaPrzesloType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="tmpPocz" type="os:OS_OgolnyPunktOsnowyType"/>
+					<element name="tmpKoniec" type="os:OS_OgolnyPunktOsnowyType"/>
+					<element name="grawConst" type="double"/>
+					<element name="momentObserwacji" type="dateTime" maxOccurs="unbounded"/>
+					<!-- derived attribute -->
+					<element name="diffG" type="double" maxOccurs="unbounded"/>
+					<element name="mDiffG" type="double" maxOccurs="unbounded"/>
+					<element name="obsGrawPunkt" type="os:OS_ObserwacjaGrawimetrycznaPunktPropertyType" minOccurs="2" maxOccurs="2">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>os:obsGrawPrzeslo</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_ObserwacjaGrawimetrycznaPrzesloPropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_ObserwacjaGrawimetrycznaPrzeslo"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================-->
+	<element name="OS_ObserwacjaOdleglosci" type="os:OS_ObserwacjaOdleglosciType" substitutionGroup="os:OS_Obserwacja"/>
+	<complexType name="OS_ObserwacjaOdleglosciType">
+		<complexContent>
+			<extension base="os:OS_ObserwacjaType">
+				<sequence>
+					<element name="celTMP" type="os:OS_OgolnyPunktOsnowyType"/>
+					<element name="odleglosc" type="gml:LengthType" maxOccurs="unbounded"/>
+					<element name="mOdl" type="gml:LengthType" maxOccurs="unbounded"/>
+					<element name="ukladGeod" type="bt:BT_UkladGeodType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_ObserwacjaOdleglosciPropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_ObserwacjaOdleglosci"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<element name="OS_RINEXFile" type="os:OS_RINEXFileType" substitutionGroup="os:OS_Obserwacja"/>
+	<complexType name="OS_RINEXFileType">
+		<complexContent>
+			<extension base="os:OS_ObserwacjaType">
+				<sequence>
+					<element name="oRINEX" type="bt:BT_ZbiorPropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_RINEXFilePropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_RINEXFile"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<element name="OS_ObserwacjaAzymutu" type="os:OS_ObserwacjaAzymutuType" substitutionGroup="os:OS_Obserwacja"/>
+	<complexType name="OS_ObserwacjaAzymutuType">
+		<complexContent>
+			<extension base="os:OS_ObserwacjaType">
+				<sequence>
+					<element name="celTMP" type="os:OS_OgolnyPunktOsnowyType"/>
+					<element name="azymut" type="gml:AngleType" maxOccurs="unbounded"/>
+					<element name="mAzymut" type="gml:AngleType" maxOccurs="unbounded"/>
+					<element name="ukladGeod" type="bt:BT_UkladGeodType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_ObserwacjaAzymutuPropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_ObserwacjaAzymutu"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<element name="OS_ObserwacjaKata" type="os:OS_ObserwacjaKataType" substitutionGroup="os:OS_Obserwacja"/>
+	<complexType name="OS_ObserwacjaKataType">
+		<complexContent>
+			<extension base="os:OS_ObserwacjaType">
+				<sequence>
+					<element name="lewyTMP" type="os:OS_OgolnyPunktOsnowyType"/>
+					<element name="prawyTMP" type="os:OS_OgolnyPunktOsnowyType"/>
+					<element name="kat" type="gml:AngleType" maxOccurs="unbounded"/>
+					<element name="mKat" type="gml:AngleType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_ObserwacjaKataPropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_ObserwacjaKata"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<element name="OS_ObserwacjaKierunku" type="os:OS_ObserwacjaKierunkuType" substitutionGroup="os:OS_Obserwacja"/>
+	<complexType name="OS_ObserwacjaKierunkuType">
+		<complexContent>
+			<extension base="os:OS_ObserwacjaType">
+				<sequence>
+					<element name="celTMP" type="os:OS_OgolnyPunktOsnowyType"/>
+					<element name="kierunek" type="gml:AngleType" maxOccurs="unbounded"/>
+					<element name="mKier" type="gml:AngleType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_ObserwacjaKierunkuPropertyType">
+		<sequence minOccurs="0">
+			<element ref="os:OS_ObserwacjaKierunku"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<element name="OS_Obserwacja" type="os:OS_ObserwacjaType" abstract="true" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="OS_ObserwacjaType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="wskazujeStanowisko" type="os:OS_OgolnyPunktOsnowyType">
+						<annotation>
+							<appinfo>
+								<gml:reversePropertyName>os:obs1</gml:reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OS_ObserwacjaPropertyType">
+		<sequence>
+			<element ref="os:OS_Obserwacja"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<!-- ================================== -->
+	<!-- =========ENUMERATION=========== -->
+	<simpleType name="OS_KlasaOsnowyType">
+		<restriction base="string">
+			<enumeration value="1"/>
+			<enumeration value="2"/>
+			<enumeration value="3"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OS_RodzajWysType">
+		<restriction base="string">
+			<enumeration value="normalna"/>
+			<enumeration value="geodezyjna"/>
+			<enumeration value="ortometryczna"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OS_TypWyznWysType">
+		<restriction base="string">
+			<enumeration value="niwelacjaPrecyzyjna"/>
+			<enumeration value="niwelacjaTechniczna"/>
+			<enumeration value="niwelacjaTrygonometryczna"/>
+			<enumeration value="niwelacjaSatelitarna"/>
+		</restriction>
+	</simpleType>
+	<!-- =========CODE LIST============== -->
+	<simpleType name="OS_OdniesWysType">
+		<union memberTypes="os:OS_OdniesWysEnumerationType os:OS_OdniesWysOtherType"/>
+	</simpleType>
+	<simpleType name="OS_OdniesWysEnumerationType">
+		<restriction base="string">
+			<enumeration value="reper"/>
+			<enumeration value="goraPlyty"/>
+			<enumeration value="goraSlupa"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OS_OdniesWysOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OS_RodzajPunktuType">
+		<union memberTypes="os:OS_RodzajPunktuEnumerationType os:OS_RodzajPunktuOtherType"/>
+	</simpleType>
+	<simpleType name="OS_RodzajPunktuEnumerationType">
+		<restriction base="string">
+			<enumeration value="punktWiekowy"/>
+			<enumeration value="punktBazyGrawimetrycznej"/>
+			<enumeration value="punktWezlowy"/>
+			<enumeration value="stacjaReferencyjnaEPN"/>
+			<enumeration value="stacjaReferencyjnaASG-EUPOS"/>
+			<enumeration value="punktSieciEUREF-POL"/>
+			<enumeration value="punktSieciPOLREF"/>
+			<enumeration value="glownyPunktSieciEUVN"/>
+			<enumeration value="punktRozszerzeniaSieciEUVN"/>
+			<enumeration value="punktKrajowegoZdjeciaMagnetycznego"/>
+			<enumeration value="punktWyznaczenAbsolutnych"/>
+			<enumeration value="punktWyznaczenWzglednych"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OS_RodzajPunktuOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OS_TypPunktuType">
+		<union memberTypes="os:OS_TypPunktuEnumerationType os:OS_TypPunktuOtherType"/>
+	</simpleType>
+	<simpleType name="OS_TypPunktuEnumerationType">
+		<restriction base="string">
+			<enumeration value="centr"/>
+			<enumeration value="ekscentr"/>
+			<enumeration value="punktPrzeniesienia"/>
+			<enumeration value="punktKierunkowy"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OS_TypPunktuOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OS_StanStabilizacjiType">
+		<union memberTypes="os:OS_StanStabilizacjiEnumerationType os:OS_StanStabilizacjiOtherType"/>
+	</simpleType>
+	<simpleType name="OS_StanStabilizacjiEnumerationType">
+		<restriction base="string">
+			<enumeration value="istniejacy"/>
+			<enumeration value="uszkodzony"/>
+			<enumeration value="zniszczony"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OS_StanStabilizacjiOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OS_TypStabilizacjiType">
+		<union memberTypes="os:OS_TypStabilizacjiEnumerationType os:OS_TypStabilizacjiOtherType"/>
+	</simpleType>
+	<simpleType name="OS_TypStabilizacjiEnumerationType">
+		<restriction base="string">
+			<enumeration value="elementBudowli"/>
+			<enumeration value="stabilizowanyZnakNaBudowli"/>
+			<enumeration value="znakWLitymPodlozu"/>
+			<enumeration value="znakScienny"/>
+			<enumeration value="znakGruntowyJednopoziomowy"/>
+			<enumeration value="znakGruntowyDwupoziomowy"/>
+			<enumeration value="znakGruntowyPodziemny"/>
+			<enumeration value="slupObserwacyjny"/>
+			<enumeration value="blokBetonowy"/>
+			<enumeration value="znakSpecjalnyOsnowyGeodezyjnej"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OS_TypStabilizacjiOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OS_TypWyznWspType">
+		<union memberTypes="os:OS_TypWyznWspEnumerationType os:OS_TypWyznWspOtherType"/>
+	</simpleType>
+	<simpleType name="OS_TypWyznWspEnumerationType">
+		<restriction base="string">
+			<enumeration value="zDokladnegoPomiaruKlasycznego"/>
+			<enumeration value="zDokladnegoPomiaruGNSS"/>
+			<enumeration value="zPrzyblizonegoPomiaru "/>
+			<enumeration value="zMapy"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OS_TypWyznWspOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OS_TypZabudowyType">
+		<union memberTypes="os:OS_TypZabudowyEnumerationType os:OS_TypZabudowyOtherType"/>
+	</simpleType>
+	<simpleType name="OS_TypZabudowyEnumerationType">
+		<restriction base="string">
+			<enumeration value="brak"/>
+			<enumeration value="wiezaTriang"/>
+			<enumeration value="slupRozp"/>
+			<enumeration value="sygnalRozp"/>
+			<enumeration value="studniaBet"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="OS_TypZabudowyOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+</schema>

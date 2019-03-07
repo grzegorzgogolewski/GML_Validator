@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GML_Validator", "GML_Validator\GML_Validator.csproj", "{3539A9ED-713D-45E7-B3BB-9CA343E2AB77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GML_Tools", "GML_Tools\GML_Tools.csproj", "{ABDBE004-6CB2-4A64-AAA8-07E3969336CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3539A9ED-713D-45E7-B3BB-9CA343E2AB77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3539A9ED-713D-45E7-B3BB-9CA343E2AB77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3539A9ED-713D-45E7-B3BB-9CA343E2AB77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABDBE004-6CB2-4A64-AAA8-07E3969336CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABDBE004-6CB2-4A64-AAA8-07E3969336CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABDBE004-6CB2-4A64-AAA8-07E3969336CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABDBE004-6CB2-4A64-AAA8-07E3969336CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

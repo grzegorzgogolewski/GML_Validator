@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:rcw="urn:gugik:specyfikacje:gmlas:rejestrCenIWartosciNieruchomosci:1.0" xmlns:bt="urn:gugik:specyfikacje:gmlas:modelPodstawowy:1.0" xmlns:egb="urn:gugik:specyfikacje:gmlas:ewidencjaGruntowBudynkow:1.0" targetNamespace="urn:gugik:specyfikacje:gmlas:rejestrCenIWartosciNieruchomosci:1.0" elementFormDefault="qualified" version="2.0">
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:gugik:specyfikacje:gmlas:modelPodstawowy:1.0" schemaLocation="BT_ModelPodstawowy.xsd"/>
+	<import namespace="urn:gugik:specyfikacje:gmlas:ewidencjaGruntowBudynkow:1.0" schemaLocation="EGB_PodstawaPrawna.xsd"/>
+	<include schemaLocation="RCW_RCiWN_Slowniki.xsd"/>
+	<!-- ============================================================= -->
+	<element name="RCW_OgolnyObiekt" type="rcw:RCW_OgolnyObiektType" abstract="true" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="RCW_OgolnyObiektType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="idIIP" type="bt:BT_IdentyfikatorPropertyType"/>
+					<element name="startObiekt" type="dateTime"/>
+					<element name="startWersjaObiekt" type="dateTime"/>
+					<element name="koniecWersjaObiekt" type="dateTime" minOccurs="0"/>
+					<element name="koniecObiekt" type="dateTime" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="RCW_OgolnyObiektPropertyType">
+		<sequence minOccurs="0">
+			<element ref="rcw:RCW_OgolnyObiekt"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="RCW_Nieruchomosc" type="rcw:RCW_NieruchomoscType" substitutionGroup="rcw:RCW_OgolnyObiekt"/>
+	<complexType name="RCW_NieruchomoscType">
+		<complexContent>
+			<extension base="rcw:RCW_OgolnyObiektType">
+				<sequence>
+					<element name="rodzajNieruchomosci" type="rcw:RCW_RodzajNieruchomosciType"/>
+					<element name="polePowierzchniNieruchomosciGruntowej" type="gml:AreaType" minOccurs="0"/>
+					<element name="rodzajUzytkuGruntowego" type="rcw:RCW_RodzajUzytkuGruntowegoType" minOccurs="0"/>
+					<element name="opis" type="string" minOccurs="0"/>
+					<element name="cenaNieruchomosci" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="decimal">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="rodzajObciazenia" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="rcw:RCW_RodzajObciazeniaType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="szczegolyDotObciazenia" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!-- Roles -->
+					<element name="opisBudynku1" type="gml:ReferenceType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="opisLokalu1" type="gml:ReferenceType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="opisDzialki1" type="gml:ReferenceType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="RCW_NieruchomoscPropertyType">
+		<sequence minOccurs="0">
+			<element ref="rcw:RCW_Nieruchomosc"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="RCW_Wycena" type="rcw:RCW_WycenaType" substitutionGroup="rcw:RCW_OgolnyObiekt"/>
+	<complexType name="RCW_WycenaType">
+		<complexContent>
+			<extension base="rcw:RCW_OgolnyObiektType">
+				<sequence>
+					<element name="idWyceny" type="string"/>
+					<element name="dataWyceny" type="date"/>
+					<element name="wartoscNieruchomosci" type="decimal"/>
+					<element name="celWyceny" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="rcw:RCW_CelWycenyType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="zastosowanePodejscie" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="rcw:RCW_ZastosowanePodejscieType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="rodzajWartosci" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="rcw:RCW_RodzajWartosciType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="dataStanuNieruchomosci" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="date">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!-- Roles -->
+					<element name="podstawaPrawna2" type="gml:ReferenceType"/>
+					<element name="nieruchomosc2" type="gml:ReferenceType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="RCW_WycenaPropertyType">
+		<sequence minOccurs="0">
+			<element ref="rcw:RCW_Wycena"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="RCW_Transakcja" type="rcw:RCW_TransakcjaType" substitutionGroup="rcw:RCW_OgolnyObiekt"/>
+	<complexType name="RCW_TransakcjaType">
+		<complexContent>
+			<extension base="rcw:RCW_OgolnyObiektType">
+				<sequence>
+					<element name="cenaTransakcji" type="decimal"/>
+					<element name="dataZawarciaUmowy" type="date"/>
+					<element name="idTransakcji" type="string"/>
+					<element name="rodzajPrawaBedacegoPrzedmiotemTransakcji" type="rcw:RCW_RodzajPrawaType"/>
+					<element name="rodzajRynku" type="rcw:RCW_RodzajRynkuType" minOccurs="0"/>
+					<element name="rodzajTransakcji" type="rcw:RCW_RodzajTransakcjiType"/>
+					<element name="stronaKupujaca" type="rcw:RCW_StronaSprzedajacaKupujacaType"/>
+					<element name="stronaSprzedajaca" type="rcw:RCW_StronaSprzedajacaKupujacaType"/>
+					<element name="udzialWPrawieBedacymPrzedmiotemTransacji" type="string"/>
+					<element name="stawkaPodatkuVAT" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="decimal">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!-- Roles -->
+					<element name="nieruchomosc1" type="gml:ReferenceType" maxOccurs="unbounded"/>
+					<element name="podstawaPrawna1" type="gml:ReferenceType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="RCW_TransakcjaPropertyType">
+		<sequence minOccurs="0">
+			<element ref="rcw:RCW_Transakcja"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="RCW_OpisDzialki" type="rcw:RCW_OpisDzialkiType" substitutionGroup="rcw:RCW_OgolnyObiekt"/>
+	<complexType name="RCW_OpisDzialkiType">
+		<complexContent>
+			<extension base="rcw:RCW_OgolnyObiektType">
+				<sequence>
+					<element name="dodatkoweInformacje" type="string" minOccurs="0"/>
+					<element name="idDzialki" type="string"/>
+					<element name="powierzchniaEwidencyjna" type="gml:AreaType"/>
+					<element name="cenaDzialkiEwidencyjnej" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="decimal">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="przeznaczenieWMPZP" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="rcw:RCW_PrzeznaczenieWMPZPType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="stawkaPodatkuVAT" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="decimal">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="uzbrojenieIstniejace" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="rcw:RCW_UzbrojenieDzialkiType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="uzbrojenieMozliweDoPodlaczenia" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="rcw:RCW_UzbrojenieDzialkiType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="wartoscDzialkiEwidencyjnej" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="decimal">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!-- Roles -->
+					<element name="adresDzialki" type="gml:ReferenceType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="RCW_OpisDzialkiPropertyType">
+		<sequence minOccurs="0">
+			<element ref="rcw:RCW_OpisDzialki"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="RCW_OpisBudynku" type="rcw:RCW_OpisBudynkuType" substitutionGroup="rcw:RCW_OgolnyObiekt"/>
+	<complexType name="RCW_OpisBudynkuType">
+		<complexContent>
+			<extension base="rcw:RCW_OgolnyObiektType">
+				<sequence>
+					<element name="idBudynku" type="string"/>
+					<element name="innaFunkcjaBudynku" type="egb:EGB_FunkcjaBudynkuType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="glownaFunkcjaBudynku" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="egb:EGB_FunkcjaBudynkuType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="uzbrojenieIstniejace" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="rcw:RCW_UzbrojenieBudynkuLokaluType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="cenaBudynku" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="decimal">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="stawkaPodatkuVAT" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="decimal">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="wartoscBudynku" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="decimal">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="powierzchniaUzytkowaBudynkuZObmiarow" type="gml:AreaType" minOccurs="0"/>
+					<!-- Roles -->
+					<element name="adresBudynku" type="gml:ReferenceType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="RCW_OpisBudynkuPropertyType">
+		<sequence minOccurs="0">
+			<element ref="rcw:RCW_OpisBudynku"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="RCW_OpisLokalu" type="rcw:RCW_OpisLokaluType" substitutionGroup="rcw:RCW_OgolnyObiekt"/>
+	<complexType name="RCW_OpisLokaluType">
+		<complexContent>
+			<extension base="rcw:RCW_OgolnyObiektType">
+				<sequence>
+					<element name="idLokalu" type="string"/>
+					<element name="liczbaIzb" type="integer"/>
+					<element name="powUzytkowaLokalu" type="gml:AreaType"/>
+					<element name="rodzajLokalu" type="egb:EGB_RodzajLokaluType"/>
+					<element name="cenaLokalu" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="decimal">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="funkcjaLokaluNiemieszkalnego" nillable="true" minOccurs="0">
+						<complexType>
+							<simpleContent>
+								<extension base="rcw:RCW_FunkcjaLokaluType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="instalacjeWLokalu" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="rcw:RCW_UzbrojenieBudynkuLokaluType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="nrKondygnacji" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="stawkaPodatkuVAT" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="decimal">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="wartoscLokalu" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="decimal">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<!-- Roles -->
+					<element name="adresLokalu" type="gml:ReferenceType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="RCW_OpisLokaluPropertyType">
+		<sequence minOccurs="0">
+			<element ref="rcw:RCW_OpisLokalu"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>
