@@ -29,6 +29,23 @@ namespace GML_Tools
         {
             switch (GlobalVariables.Schema)
             {
+                case "BDOT":
+
+                    switch (Path.GetFileName(absoluteUri.LocalPath))
+                    {
+                        case "BT_ModelPodstawowy.xsd":
+                            absoluteUri = new Uri(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "xsd", "BDOT", "BT_ModelPodstawowy.xsd"));
+                            break;
+                        case "BDOT500.xsd":
+                            absoluteUri = new Uri(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "xsd", "BDOT", "BDOT500.xsd"));
+                            break;
+                        case "BDZ_BDOT500_Slowniki.xsd":
+                            absoluteUri = new Uri(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "xsd", "BDOT", "BDZ_BDOT500_Slowniki.xsd"));
+                            break;
+                    }
+
+                    break;
+
                 case "GESUT":
 
                     switch (Path.GetFileName(absoluteUri.LocalPath))
